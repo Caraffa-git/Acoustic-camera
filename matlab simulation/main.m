@@ -4,11 +4,9 @@ addpath("./functions")
 load handel;
 audio = y;
 
-mic_mesh = genMicMesh(2, 1);
-testPoints = genTestPointMesh(0.1, 0.1);
+N = 2;
+d = 0.5;
 
-figure;
-plot3(mic_mesh(1, :), mic_mesh(2, :), mic_mesh(3, :), ".");
-hold on;
-[x y z] = sph2cart(testPoints(1, :),  testPoints(2, :), 2);
-plot3(x, y, z, ".");
+mic_mesh = genMicMesh(N, d/N*0.5);
+testPoints = genTestPointMesh(0.1, 0.1);
+delays = calcDelays(mic_mesh, testPoints, Fs, 4*d);
