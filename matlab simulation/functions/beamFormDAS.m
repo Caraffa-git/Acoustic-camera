@@ -6,8 +6,6 @@ parfor i = 1:1:n
     frame(i) = rms(sum(delayAudioPackets(audio_packets, delays(:, i)),2));
 end
 
-%frame = normalize(frame, "range");
-
 end
 
 
