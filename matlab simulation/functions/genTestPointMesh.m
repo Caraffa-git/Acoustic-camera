@@ -1,11 +1,11 @@
-function [mesh k l] = genTestPointMesh(az_start, az_stop, az_n, el_start, el_stop, el_n)
-% Generate mesh of test points in spherical system.
-%
-% Returns:
-%   mesh: A matrix where each row represents the azimuth and elevation angles of a test point in spherical coordinates.
-    %[az el] = meshgrid(0:az_step:pi, -pi/2:el_step:pi/2);
-    [az el] = meshgrid(linspace(az_start, az_stop, az_n), linspace(el_start, el_stop, el_n));
-    mesh = [az(:) el(:)]';
-    k = size(az, 1);
-    l = size(az, 2);
+function test_points= genTestPointMesh(a, n_a, b, n_b, r)
+    % Create the X and Z grids
+    [X, Z] = meshgrid(linspace(-a/2, a/2, n_a), linspace(-b/2, b/2, n_b));
+    
+    % Adjust the Y coordinates to be at a distance r from the origin along the Y-axis
+    Y = ones(size(X)) * r;
+    
+    % Combine the X, Y, and Z grids into a single 3D point cloud
+    test_points = [X(:), Y(:), Z(:)];
+    test_points = test_points';
 end

@@ -7,9 +7,13 @@ audio_base = y;
 N = 2;
 d = 1;
 
+% number of test points in x and z direction
+k = 64;
+l = 64;
+
 mic_mesh = genMicMesh(N, d/N*0.5);
-[test_points k l] = genTestPointMesh(0+pi/8, pi-pi/8, 32, -pi/2 + pi/6, pi/2 - pi/6, 32);
-delays = calcDelays(mic_mesh, test_points, Fs, 4*d);
+test_points = genTestPointMesh(4, k, 4, l, 2);
+delays = calcDelays(mic_mesh, test_points, Fs);
 
 audio = simulateAudioSource(pi/2, 0, 4, audio_base, Fs, mic_mesh);
 

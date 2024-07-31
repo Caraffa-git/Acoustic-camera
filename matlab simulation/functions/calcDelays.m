@@ -1,8 +1,10 @@
 % Calculate signal delays between each microphone and each test point
-function delays = calcDelays(mic_mesh, test_points, fs, distance)
+function delays = calcDelays(mic_mesh, test_points, fs)
     c = 343; % Speed of sound 343 m/s
 
-    [x y z] = sph2cart(test_points(1, :), test_points(2, :), distance);
+    x = test_points(1, :);
+    y = test_points(2, :);
+    z = test_points(3, :);
 
     delays = zeros(size(mic_mesh, 2), size(test_points, 2));
 
